@@ -1,0 +1,96 @@
+
+fieldset {
+	border: 1px dashed #000 !important;
+	border-radius: 0.50rem;
+	padding: 0 1em 1em 1em !important;
+	margin: 0 0 1.5em 0 !important;
+	-webkit-box-shadow:  0px 0px 0px 0px #000;
+	/*box-shadow:  0px 0px 2px 0px #000;*/
+}
+ 
+legend{ 
+	float: none;
+	width:inherit;
+	font-size: 1em !important;
+	font-weight: bold !important;
+	text-align: center;
+	border: 1px solid pink;
+	background-color: whitesmoke;
+	border-radius: 12px;   
+	padding: 0px 10px; 
+}
+
+.hide{display: none !important;}
+
+/*Datatable*/
+/*header & footer*/
+.dataTables_wrapper .dataTables_length, 
+.dataTables_filter, 
+.dataTables_info, 
+.dataTables_paginate {
+   background-color: paleturquoise;
+
+}
+
+.dataTables_wrapper .dataTables_filter, 
+.dataTables_wrapper .dataTables_paginate{ 
+   float: none;
+}
+
+.dataTables_wrapper .dataTables_length label, 
+.dataTables_wrapper .dataTables_filter label{ 
+   padding: 0.175rem 0.5rem; 
+   margin-bottom: 0rem; 
+}
+
+/*header left + right*/
+.dataTables_wrapper .dataTables_length select,
+.dataTables_wrapper .dataTables_filter input {
+   background-color: #fff; padding: 0px;
+}
+
+/*Table body*/
+
+table.dataTable { margin: 5px 0px; border-collapse: collapse; }
+
+.table-bordered, .table-bordered td, .table-bordered th { /*border: 1px solid #dee2e6; border: 1px dashed;*/ }
+
+table.dataTable thead th, table.dataTable.no-footer{ border-bottom: unset; }
+
+.table thead th,
+table.dataTable thead th,
+
+.table thead td, 
+table.dataTable thead td { 
+    padding: 2px 20px !important; 
+    text-transform: capitalize; 
+    /*background-color: turquoise;*/
+    text-align: center;
+}
+
+.table tbody td, 
+table.dataTable tbody td { 
+    text-align: center; 
+    vertical-align: middle; 
+    padding: 2px; 
+}
+table.dataTable tbody tr { background-color: whitesmoke; }
+
+
+/*Buttom*/
+.dataTables_wrapper .dataTables_info { padding: 0.5rem; }
+.dataTables_wrapper .dataTables_paginate { padding: 0.25em; }
+
+.dataTables_wrapper .dataTables_paginate .paginate_button { 
+   min-width: 1.5em; padding: 0.2em 0.6em; margin-left: 2px;
+}
+
+/*Model Form*/
+   .modal-content{ background-color: #cff5ea; }
+   .modal-header { padding: 0.5rem; background-color: aquamarine; }
+   .modal-body { padding: 0.3rem 1rem 0rem; }
+   .modal-footer { padding: 0rem; margin-bottom: 5px;}
+   .btn-close:hover{ 
+      background-color: gray;
+      color: #fff;
+   }
