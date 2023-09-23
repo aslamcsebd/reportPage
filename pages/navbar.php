@@ -3,7 +3,7 @@
 		<a class="navbar-brand" href="index.php">Home</a>
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-				<?php if (isset($_SESSION['login'])) { ?>
+				<?php if(isset($_SESSION['login'])) { ?>
 					<li class="nav-item">
 						<a class="nav-link" aria-current="page" href="report-list.php">Report list</a>
 					</li>
@@ -18,7 +18,7 @@
 					
 				<?php } else { ?>
 						
-						<a class="btn btn-sm btn-outline-danger" href="include/logout.php">
+						<a class="btn btn-sm btn-outline-danger" href="action/logout.php">
 							<i class="fa-solid fa-right-from-bracket"></i> &nbsp;
 							Logout
 						</a>
@@ -27,3 +27,10 @@
 		</div>
 	</div>
 </nav>
+
+<?php if(isset($_SESSION["response"])){ ?>
+	<div class="alert alert-warning alert-dismissible fade show" role="alert">
+		<strong> <?=$_SESSION["response"]?>!</strong>
+		<button type="button" class="btn-close border border-primary rounded-circle my-3 me-2 p-1" data-bs-dismiss="alert" aria-label="Close"></button>
+	</div>
+<?php } ?>

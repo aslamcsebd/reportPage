@@ -6,21 +6,21 @@ if (!isset($_SESSION['login'])) {
 ?>
 <!doctype html>
 <html lang="en">
-<?php include('include/head.php'); ?>
+<?php include('pages/head.php'); ?>
 
 <body>
-	<?php include('include/navbar.php'); ?>
+	<?php include('pages/navbar.php'); ?>
 
 	<main class="container-fluid row justify-content-center my-2 mx-0">
 		<div class="col-md-12">
 			<div class="card-body p-1">
 				<form action="#" method="post" enctype="multipart/form-data">
-					<fieldset class="form-group pt-2 mb-1">
+					<fieldset class="form-group py-2 mb-1">
 						<legend class="mb-0">Search report</legend>
 						<div class="row justify-content-center fw-bold">
 							<div class="form-group col-auto">
 								<label for="start">Filter type*</label>
-								<div class="border border-secondary rounded pt-1 mt-2">
+								<div class="border border-secondary rounded py-1 mt-2">
 									<div class="radio-toolbar form-check form-check-inline">
 										<div class="form-check form-check-inline">
 											<input type="radio" id="withUser" class="form-check-input" name="filterType"
@@ -131,7 +131,7 @@ if (!isset($_SESSION['login'])) {
 									</td>
 									<td width="30">
 										<a href="javascript:;" class="btn btn-sm btn-outline-primary px-4 viewModal" data-bs-toggle="modal" data-bs-target="#viewModal" 
-											data-id="1">View
+											data-name="This is name">View
 										</a>
 									</td>
 								</tr>
@@ -145,8 +145,20 @@ if (!isset($_SESSION['login'])) {
 	</main>
 
 	<!-- Modal -->
-	<?php include('include/modal/viewModal.php'); ?>
-	<?php include('include/footer.php'); ?>
-</body>
+	<?php 	include('pages/modal/viewModal.php'); 
+			include('pages/footer.php');
+			unset($_SESSION['response']);
+	?>
+	<script>
+		$('.viewModal').click(function() {
+		var name = $(this).data('name'); 
 
+		<?php	
+			$a='name';
+		?>
+
+		$('#name').val(<?php echo $a;?>);
+	} );
+	</script>
+</body>
 </html>

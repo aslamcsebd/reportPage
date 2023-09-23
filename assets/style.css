@@ -94,3 +94,21 @@ table.dataTable tbody tr { background-color: whitesmoke; }
       background-color: gray;
       color: #fff;
    }
+
+   /*Alert message*/
+.alert { 
+	margin-top: 0px; 
+	position: absolute; 
+	right: 0px; 
+	z-index: 1; 
+	color: #000;
+ }
+
+ .btn-close:hover{ 
+	color: red;
+ }
+
+ button:focus {
+	 outline: unset !important;
+ }
+.alert:first-letter{text-transform: uppercase !important;}

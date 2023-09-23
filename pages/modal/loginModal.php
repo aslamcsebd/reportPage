@@ -9,14 +9,14 @@
 				<button type="button" class="btn-close border border-primary rounded-circle m-0" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<div class="modal-body">
-				<form action="include/login.php" method="post" enctype="multipart/form-data">
+				<form action="action/login.php" method="post" enctype="multipart/form-data">
 					<div class="form-group">
 						<label for="email" class="col-form-label">Email :</label>
-						<input type="email" class="form-control mt-0" id="email" value="admin@gmail.com">
+						<input type="email" class="form-control mt-0" id="email" name="email" value="admin@gmail.com">
 					</div>
 					<div class="form-group">
 						<label for="password" class="col-form-label">Password :</label>
-						<input type="password" class="form-control" id="password" value="1234">
+						<input type="password" class="form-control" id="password" name="password" value="1234">
 					</div>
 					<div class="modal-footer mt-2">
 						<button type="submit" class="btn btn-sm btn-outline-success px-4">
