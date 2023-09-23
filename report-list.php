@@ -96,7 +96,6 @@ if (!isset($_SESSION['login'])) {
 				<div class="card-body p-1">
 					<table class="table table-bordered">
 						<thead class="bg-info">
-							<th>Sl</th>
 							<th>Name</th>
 							<th>Email</th>
 							<th>Mobile</th>
@@ -106,33 +105,29 @@ if (!isset($_SESSION['login'])) {
 							<th>Action</th>
 						</thead>
 						<tbody>
-							<?php for ($i = 0; $i <= 10; $i++) { ?>
+						<?php 
+							include 'action/database.php';
+							$b = new database();
+							$b->select("reports","*");
+							$result = $b->sql;
+						 	while ($row = mysqli_fetch_assoc($result)) { ?>
 								<tr>
-									<td>
-										<?= $i ?>
-									</td>
-									<td>
-										<?= $i ?>
-									</td>
-									<td>
-										<?= $i ?>
-									</td>
-									<td>
-										<?= $i ?>
-									</td>
-									<td>
-										<?= $i ?>
-									</td>
-									<td>
-										<?= $i ?>
-									</td>
-									<td>
-										<?= $i ?>
-									</td>
+									<td><?=$row['buyer']?></td>
+									<td><?=$row['buyer_email']?></td>
+									<td><?=$row['phone']?></td>
+									<td><?=$row['city']?></td>
+									<td><?=$row['items']?></td>
+									<td><?=$row['amount']?></td>
 									<td width="30">
 										<a href="javascript:;" class="btn btn-sm btn-outline-primary px-4 viewModal" data-bs-toggle="modal" data-bs-target="#viewModal" 
-											data-name="This is name">View
-										</a>
+											
+											<?php
+												$fields = array("buyer", "buyer_email", "phone", "city", "items", "amount", "note", "receipt_id", "buyer_ip", "hash_key", "entry_at", "entry_by");
+												foreach ($fields as $field) { ?>
+													data-<?=$field?>="<?=$row[$field]?>"
+											<?php } ?>
+										
+										>View</a>
 									</td>
 								</tr>
 							<?php } ?>
@@ -151,13 +146,16 @@ if (!isset($_SESSION['login'])) {
 	?>
 	<script>
 		$('.viewModal').click(function() {
-		var name = $(this).data('name'); 
+			<?php
+				$fields = array("buyer", "buyer_email", "phone", "city", "items", "amount", "note", "receipt_id", "buyer_ip", "hash_key", "entry_at", "entry_by");
+				foreach ($fields as $field) { ?>
+					var <?=$field?> = $(this).data('<?=$field?>');
+					$('#<?=$field?>').val(<?=$field?>);
+			<?php } ?>
 
-		<?php	
-			$a='name';
-		?>
-
-		$('#name').val(<?php echo $a;?>);
+		//	Main code was
+		// var name = $(this).data('name');	
+		// $('#name').val(name);
 	} );
 	</script>
 </body>

@@ -10,39 +10,16 @@
 			<div class="modal-body">
 				<div class="card-body fw-bold">
 					<div class="row">
-						<div class="form-group col-md-4">
-							<label for="name">Full name*</label>
-							<input class="form-control" id="name" readonly>
+						<?php
+							$fields = array("buyer", "buyer_email", "phone", "city", "items", "amount", "note", "receipt_id", "buyer_ip", "hash_key", "entry_at", "entry_by");
+							foreach ($fields as $field) { ?>
 
-						</div>
-						<div class="form-group col-md-4">
-							<label for="email">Email*</label>
-							<input class="form-control" id="email" readonly>
-						</div>
-						<div class="form-group col-md-4">
-							<label for="phone">Mobile number*</label>
-							<input class="form-control" id="phone" readonly>
-						</div>
-					</div>
-					<div class="row my-2">
-						<div class="form-group col-md-4">
-							<label for="city">City*</label>
-							<input class="form-control" id="city" readonly>
-						</div>
-						<div class="form-group col-md-4">
-							<label for="item">Item name*</label>
-							<input class="form-control" id="item" readonly>
-						</div>
-						<div class="form-group col-md-4">
-							<label for="amount">Amount*</label>
-							<input class="form-control" id="amount" readonly>
-						</div>
-					</div>
-					<div class="row">
-						<div class="form-group col-md-12">
-							<label for="note">Note*</label>
-							<textarea class="form-control" id="note" readonly></textarea>
-						</div>
+								<div class="form-group <?php echo ($field == 'note' ? 'col-md-12' : 'col-md-4'); ?>">
+									<label class="text-capitalize"><?=$field?></label>
+									<input class="form-control" id="<?=$field?>" readonly>
+								</div>
+
+						<?php } ?>
 					</div>
 				</div>
 			</div>
