@@ -112,3 +112,9 @@ table.dataTable tbody tr { background-color: whitesmoke; }
 	 outline: unset !important;
  }
 .alert:first-letter{text-transform: uppercase !important;}
+
+.error {
+	color: red;
+	font-size: 90%;
+	font-weight: normal;
+}

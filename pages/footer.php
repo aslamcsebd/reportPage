@@ -1,5 +1,4 @@
 
-
 <script src="assets/jquery.min.js"></script>
 <script src="assets/bootstrap.min.js"></script>
 <script src="assets/summernote/summernote.min.js"></script>
@@ -20,18 +19,6 @@
 		$('.summernote').summernote('code', ''); //This line remove summercontent when load
 	});
 
-	$('#phone').change(function () {
-		let total_length = this.value.length;
-		if (total_length == '11') {
-			$("#phone").val("88" + $("#phone").val());
-		}
-		else if (total_length == '10') {
-			$("#phone").val("880" + $("#phone").val());
-		}
-		else {
-			$("#phone").val();
-		}
-	});
 
 	// Room status
 	$("#withUser").click(function () {
