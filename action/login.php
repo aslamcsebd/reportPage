@@ -1,30 +1,26 @@
 
 <?php
 	include 'database.php';
-	$conn =mysqli_connect('localhost','root','','report');
-	$status = "OK";
+	$db = new database();
 
 	if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 		$email = $_POST['email'];
-		$password = $_POST['password'];
+		$password = crc32($_POST['password']);
+		
+		$where = "email='$email' and password='$password'";
 	
-		if ($status == "OK") {	
-			$result = mysqli_query($conn, "SELECT * FROM admin WHERE email='$email' and password='$password'");
-			echo $count = mysqli_num_rows($result);
-	
-			if ($count == 1) {
-	
-				$row = mysqli_fetch_array($result);
-	
-				$_SESSION['login'] = true;
-				$_SESSION['response'] = "You are login successfully";
-				header("location: ../report-list.php");
-			} else {	
-				echo $msg = "Wrong Email or Password !!!";
-			}
-		}
-	
-	}
+		$db->select("admin", "*", $where);
+		$res = $db->sql;
+		$result = mysqli_fetch_assoc($res);
 
+		if ($result) {
+			$_SESSION['login'] = true;
+			$_SESSION['response'] = "You are login successfully";
+			header("location: ../report-list.php");
+		}else{	
+			$_SESSION['response'] = "Wrong Email or Password !!!";
+			header("location: ../index.php");
+		}
+	}
 ?>

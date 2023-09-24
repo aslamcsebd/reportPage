@@ -16,7 +16,7 @@
 					</div>
 					<div class="form-group">
 						<label for="password" class="col-form-label">Password :</label>
-						<input type="password" class="form-control" id="password" name="password" value="1234">
+						<input type="password" class="form-control" id="password" name="password" value="admin">
 					</div>
 					<div class="modal-footer mt-2">
 						<button type="submit" class="btn btn-sm btn-outline-success px-4">

@@ -5,17 +5,11 @@
 <body>
 	<?php include('pages/navbar.php'); ?>
 
-	<div class="alert alert-warning alert-dismissible fade show" role="alert" id="abc" style="display:none;">
-		<strong > !</strong>
-		<button type="button" class="btn-close border border-primary rounded-circle my-3 me-2 p-1" data-bs-dismiss="alert" aria-label="Close"></button>
-	</div>
-
 	<main class="row justify-content-center my-2 mx-0">
 		<div class="col-md-10">
 			<div class="card">
 				<h5 class="card-header bg-secondary text-center text-light">Add report</h5>
 				<!-- <form action="action/insert.php" method="post" enctype="multipart/form-data"> -->
-
 					<div class="card-body fw-bold add_report">
 						<div class="row">
 							<div class="form-group col-md-4">
@@ -59,8 +53,9 @@
 							</div>
 						</div>
 						<div class="row justify-content-md-center mt-2">
-							<button type="submit" class="btn btn-success col-md-6" value="Add" onclick="addReport()">Save now</button>
+							<button type="submit" id="submitButton" class="btn btn-success col-md-6" value="Add" onclick="addReport()">Save now</button>
 						</div>
+						<p id="timeCount" class="text-center mb-0"></p>
 					</div>
 				<!-- </form> -->
 			</div>
@@ -71,18 +66,12 @@
 	<?php 
 		include('pages/modal/loginModal.php');
 		include('pages/footer.php');
-		unset($_SESSION['response']);		
+		unset($_SESSION['response']);
 	?>
 
 	<script>
 		function printError(elemId, hintMsg) {
 			document.getElementById(elemId).innerHTML = hintMsg;
-		}
-
-		function load(src){
-			const script =document.createElement("script");
-			script.src = src;
-			document.head.prepend(script);
 		}
 
 		function addReport() {
@@ -103,12 +92,18 @@
 				printError("buyerErr", "Please enter your name");
 			} else {
 				var regex = /^[a-zA-Z\s]+$/;                
+				var total = buyer.length;
 				if(regex.test(buyer) === false) {
 					printError("buyerErr", "Please enter a valid name");
-				} else {
+				} 
+				else if(total>20){
+					printError("buyerErr", "Not more than 20 characters");
+				}
+				else {
 					printError("buyerErr", "");
 					buyerErr = false;
 				}
+
 			}
 			
 			// Validate email address
@@ -176,10 +171,15 @@
 			
 			// Validate note
 			if(note == "") {
-				printError("noteErr", "Please select your note");
+				printError("noteErr", "Please enter your note");
 			} else {
-				printError("noteErr", "");
-				noteErr = false;
+				var total = note.split(/\b\S+\b/g).length;
+				if(total>30){
+					printError("noteErr", "Not more than 30 words");
+				}else{
+					printError("noteErr", "");
+					noteErr = false;
+				}
 			}
 			
 			// Prevent the form from being submitted if there are any errors
@@ -208,10 +208,40 @@
 					toastr.options.closeButton = true;
 					toastr.options.closeMethod = 'fadeOut';
 					toastr.options.closeDuration = 100;
-					toastr.success(data.message);   
+					toastr.success(data.message);					
+					setTimeout("window.location = 'index.php'",3500);
                 }
             })
         }
 	</script>
+
+	<?php if(isset($_SESSION['postTimer']) && (time()*1000 < $_SESSION['postTimer'])){ ?> 
+		<script>
+			// Set the date we're counting down to
+			var countDownDate = <?= $_SESSION['postTimer']; ?>;
+
+			var x = setInterval(function() {
+
+				var now = new Date().getTime();
+				var distance = countDownDate - now;
+				
+				// var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+				var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+				var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+				var seconds = Math.floor((distance % (1000 * 60)) / 1000);				
+				document.getElementById("timeCount").innerHTML = hours + "h " + minutes + "m " + seconds + "s ";
+				
+				if (distance < 0) {
+					clearInterval(x);
+					document.getElementById("submitButton").disabled = false;
+					document.getElementById("timeCount").style.display = "none";
+				}else{
+					document.getElementById("submitButton").disabled = true;
+				}
+			}, 1000);
+		</script>
+	<?php }else{
+		unset($_SESSION['postTimer']);
+	} ?>
 </body>
 </html>
