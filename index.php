@@ -41,7 +41,7 @@
 							</div>
 							<div class="form-group col-md-4">
 								<label for="amount">Amount*</label>
-								<input type="number" class="form-control" name="amount" min="1" id="amount" placeholder="Enter amount">
+								<input type="number" class="form-control" name="amount" min="1" id="amount" placeholder="Enter amount" oninput="this.value = this.value.replace(/^0/g, '');">
 								<div class="error" id="amountErr"></div>
 							</div>
 						</div>
@@ -128,9 +128,11 @@
 				if (total_length == '10' || total_length == '11') {
 					if (total_length == '11') {
 						$("#phone").val("88" + $("#phone").val());
+						phone = "88"+phone;
 					}
 					else if (total_length == '10') {
 						$("#phone").val("880" + $("#phone").val());
+						phone = "880"+phone;
 					}
 					printError("phoneErr", "");
 					phoneErr = false;
@@ -143,15 +145,10 @@
 			// Validate amount number
 			if(amount == "") {
 				printError("amountErr", "Please enter your amount");
-			}else{			
-				var reg = /^[1-9][0-9]+$/;
-				if (reg.test(amount) == false){
-					printError("amountErr", "Amount : Do not start with zero");
-				}else{
-					printError("amountErr", "");
-					amountErr = false;
-				}
-			}	
+			}else{	
+				printError("amountErr", "");
+				amountErr = false;
+			}
 			
 			// Validate city
 			if(city == "") {
